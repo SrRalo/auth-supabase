@@ -172,9 +172,9 @@ function Login() {
                 
                 <p className="mt-6 text-center text-sm text-gray-600">
                     ¿No tienes una cuenta?{' '}
-                    <Link href="/" className="font-medium text-blue-600 hover:text-blue-500">
+                    <a href="/register" className="font-medium text-blue-600 hover:text-blue-500">
                         Registrarse
-                    </Link>
+                    </a>
                 </p>
             </div>
         </div>

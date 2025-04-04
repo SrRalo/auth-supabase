@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import supabase from '../../Supabase/SupabaseClient';
 
 function Register() {
@@ -163,9 +163,9 @@ function Register() {
         
         <p className="mt-6 text-center text-sm text-gray-600">
           ¿Ya tienes una cuenta?{' '}
-          <Link href="/login" className="font-medium text-blue-600 hover:text-blue-500">
+          <a href="/login" className="font-medium text-blue-600 hover:text-blue-500">
             Iniciar sesión
-          </Link>
+          </a>
         </p>
       </div>
     </div>

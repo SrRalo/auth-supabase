@@ -1,16 +1,34 @@
-import Register from './components/Auth/Register'
-import Dashboard from './components/Dashboard'
-import Login from './components/Auth/Login'
-import { Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { AuthProvider } from './components/Auth/AuthContext'
+import { ProtectedRoute } from './components/ProtectedRoute'
+import Login from './components/Auth/Register'
+import Register from './components/Auth/Login'
+import Dashboard from './components/Pages/Dashboard'
+import NotFound from './components/Pages/NotFound'
 
 function App() {
-
   return (
-    <Routes>
-      <Route path="/" element={<Register />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/dashboard" element={<Dashboard />} />
-    </Routes>
+    <BrowserRouter>
+      <AuthProvider>
+        <Routes>
+          {/* Rutas públicas */}
+          <Route path="/login" element={<Register/>} />
+          <Route path="/register" element={<Login />} />
+          
+          {/* Rutas protegidas */}
+          <Route element={<ProtectedRoute />}>
+            <Route path="/dashboard" element={<Dashboard />} />
+
+          </Route>
+          
+          {/* Redirección a dashboard si está autenticado o login si no lo está */}
+          <Route path="/" element={<Navigate to="/dashboard" replace />} />
+          
+          {/* Ruta 404 */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </AuthProvider>
+    </BrowserRouter>
   )
 }
 
