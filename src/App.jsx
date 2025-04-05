@@ -12,8 +12,8 @@ function App() {
       <AuthProvider>
         <Routes>
           {/* Rutas públicas */}
-          <Route path="/login" element={<Register/>} />
-          <Route path="/register" element={<Login />} />
+          <Route path="/register" element={<Login/>} />
+          <Route path="/" element={<Register />} />
           
           {/* Rutas protegidas */}
           <Route element={<ProtectedRoute />}>

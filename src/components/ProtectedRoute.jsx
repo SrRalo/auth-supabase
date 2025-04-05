@@ -15,7 +15,7 @@ export function ProtectedRoute() {
   
   // Redirecciona a la página de login si no hay usuario
   if (!user) {
-    return <Navigate to="/login" replace />
+    return <Navigate to="/" replace />
   }
   
   // Si el usuario está autenticado, renderiza el contenido protegido
