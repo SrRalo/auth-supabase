@@ -1,5 +1,6 @@
 import { useAuth } from '../Auth/AuthContext'
 import { Link } from 'react-router-dom'
+import { Button } from "@/components/ui/button"
 
 function Dashboard() {
   const { user, signOut } = useAuth()
@@ -38,7 +39,6 @@ function Dashboard() {
             Bienvenido a tu panel de control. Esta página solo es accesible
             si has iniciado sesión correctamente.
           </p>
-          
           <div className="grid grid-cols-1 gap-6 mt-8 sm:grid-cols-2 lg:grid-cols-3">
             {/* Tarjetas de ejemplo */}
             <div className="p-6 bg-white rounded-lg shadow">
@@ -75,7 +75,13 @@ function Dashboard() {
             </div>
           </div>
         </div>
+
+
+
       </main>
+
+      <p>Hola mundo</p>
+      <Button >Click Me</Button>
     </div>
   )
 }
