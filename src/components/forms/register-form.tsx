@@ -35,7 +35,7 @@ export function RegisterForm({
     setMensaje('');
 
     try {
-      const { data, error } = await supabase.auth.signUp({
+      const { error } = await supabase.auth.signUp({
         email,
         password,
         options: {
@@ -48,6 +48,7 @@ export function RegisterForm({
       if (error) throw error;
       
       setMensaje('¡Registro exitoso! Por favor verifica tu email para confirmar tu cuenta.');
+      navigate('/');  // Redirect to login page after successful registration
     } catch (error: any) {
       setError(error.message || 'Error al registrar usuario');
     } finally {
