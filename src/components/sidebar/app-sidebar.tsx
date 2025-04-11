@@ -1,7 +1,7 @@
-import { Calendar, Home, Inbox, LogOut, Search, Settings } from "lucide-react"
+import { Calendar, LayoutDashboard, LogOut, Search, Settings } from "lucide-react"
 import {useAuth} from '@/components/Auth/AuthContext'
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-
+import { Link, useLocation } from "react-router-dom"
 
 import {
     Sidebar,
@@ -17,18 +17,13 @@ import {
   // Menu items.
   const items = [
     {
-      title: "Home",
-      url: "#",
-      icon: Home,
-    },
-    {
-      title: "Inbox",
-      url: "#",
-      icon: Inbox,
+      title: "Dashboard",
+      url: "/dashboard",
+      icon: LayoutDashboard,
     },
     {
       title: "Calendar",
-      url: "#",
+      url: "/calendar",
       icon: Calendar,
     },
     {
@@ -45,6 +40,7 @@ import {
   
   export function AppSidebar() {
     const { user, signOut } = useAuth()
+    const location = useLocation()
   
     const handleSignOut = async () => {
       await signOut()
@@ -69,11 +65,14 @@ import {
               <SidebarMenu>
                 {items.map((item) => (
                   <SidebarMenuItem key={item.title}>
-                    <SidebarMenuButton asChild>
-                      <a href={item.url}>
+                    <SidebarMenuButton
+                      asChild
+                      isActive={location.pathname === item.url}
+                    >
+                      <Link to={item.url}>
                         <item.icon />
                         <span>{item.title}</span>
-                      </a>
+                      </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                 ))}

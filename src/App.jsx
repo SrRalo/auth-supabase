@@ -4,8 +4,10 @@ import { ProtectedRoute } from './components/ProtectedRoute'
 import Login from './components/Auth/Register'
 import Register from './components/Auth/Login'
 import Dashboard from './components/Pages/Dashboard'
+import { CalendarPage } from './components/Pages/Calendar'
 import NotFound from './components/Pages/NotFound'
-import { ThemeProvider } from '../src/components/theme/ThemeToggle'
+import { ThemeProvider } from './components/theme/ThemeToggle'
+import { DashboardLayout } from './components/layouts/DashboardLayout'
 
 function App() {
   return (
@@ -19,7 +21,10 @@ function App() {
             
             {/* Rutas protegidas */}
             <Route element={<ProtectedRoute />}>
-              <Route path="/dashboard" element={<Dashboard />} />
+              <Route element={<DashboardLayout />}>
+                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/calendar" element={<CalendarPage />} />
+              </Route>
             </Route>
             
             {/* Redirección a dashboard si está autenticado o login si no lo está */}
