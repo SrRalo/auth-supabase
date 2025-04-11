@@ -1,8 +1,13 @@
 import { createClient } from '@supabase/supabase-js';
+/// <reference types="vite/client" />
 
-const supabaseUrl = 'https://ztzjacjoxwhyliswtyhx.supabase.co'
-const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp0emphY2pveHdoeWxpc3d0eWh4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDIzMzI4OTQsImV4cCI6MjA1NzkwODg5NH0.srLjrnMob8iMAzyAnzEFa7MwbYvA9XfURTTsZx7bJTM'
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+const supabaseKey = import.meta.env.VITE_SUPABASE_KEY;
 
-const supabase = createClient(supabaseUrl, supabaseAnonKey);
+if (!supabaseUrl || !supabaseKey) {
+    throw new Error('Please define VITE_SUPABASE_URL and VITE_SUPABASE_KEY environment variables');
+}
+
+const supabase = createClient(supabaseUrl, supabaseKey);
 
 export default supabase;
