@@ -6,10 +6,13 @@ export interface Client {
   email: string
   phone?: string
   created_at: string
+
 }
 
 export async function getClients(searchTerm?: string) {
-  let query = supabase.from("clients").select("*")
+  let query = supabase.from("clients").select(`*, 
+    "auth.users" (*)
+    `)
 
   if (searchTerm) {
     query = query.ilike("name", `%${searchTerm}%`)
@@ -17,15 +20,17 @@ export async function getClients(searchTerm?: string) {
 
   const { data, error } = await query.order('created_at', { ascending: false })
   if (error) throw error
-  return data as Client[]
+  return data as any[]
 }
 
 export async function createClient(client: Omit<Client, "id" | "created_at">) {
   const { data, error } = await supabase
-    .from("clients")
-    .insert(client)
-    .select()
-    .single()
+    .rpc("create_client", {
+      name: client.name,
+      email: client.email,
+      phone: client.phone,
+    }   
+    )
 
   if (error) throw error
   return data as Client
