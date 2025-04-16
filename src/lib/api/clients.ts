@@ -1,59 +1,90 @@
-import supabase from "@/Supabase/SupabaseClient"
+// Mock data for clients
+export type MemberType = "Invitado" | "Socio" | "Casual";
+export type SubscriptionType = "Mensual" | "Anual";
 
-export interface Client {
-  id: string
-  name: string
-  email: string
-  phone?: string
-  created_at: string
+export type Client = {
+  id: number;
+  name: string;
+  email: string;
+  phone: string;
+  address: string;
+  memberType: MemberType;
+  subscriptionType: SubscriptionType | null;
+  registrationDate: string;
+  subscriptionExpiration: string | null;
+  created_at: string;
+};
 
-}
-
-export async function getClients(searchTerm?: string) {
-  let query = supabase.from("clients").select(`*, 
-    "auth.users" (*)
-    `)
-
-  if (searchTerm) {
-    query = query.ilike("name", `%${searchTerm}%`)
+const mockClients: Client[] = [
+  {
+    id: 1,
+    name: "Cliente Ejemplo 1",
+    email: "cliente1@ejemplo.com",
+    phone: "123-456-7890",
+    address: "Calle Principal 123",
+    memberType: "Socio" as MemberType,
+    subscriptionType: "Mensual" as SubscriptionType,
+    registrationDate: "2024-01-15T00:00:00.000Z",
+    subscriptionExpiration: "2025-01-15T00:00:00.000Z",
+    created_at: new Date().toISOString()
+  },
+  {
+    id: 2,
+    name: "Cliente Ejemplo 2",
+    email: "cliente2@ejemplo.com",
+    phone: "098-765-4321",
+    address: "Avenida Secundaria 456",
+    memberType: "Invitado" as MemberType,
+    subscriptionType: null,
+    registrationDate: "2024-02-20T00:00:00.000Z",
+    subscriptionExpiration: null,
+    created_at: new Date().toISOString()
+  },
+  {
+    id: 3,
+    name: "Cliente Ejemplo 3",
+    email: "cliente3@ejemplo.com",
+    phone: "555-555-5555",
+    address: "Plaza Central 789",
+    memberType: "Casual" as MemberType,
+    subscriptionType: null,
+    registrationDate: "2024-03-10T00:00:00.000Z",
+    subscriptionExpiration: null,
+    created_at: new Date().toISOString()
   }
+];
 
-  const { data, error } = await query.order('created_at', { ascending: false })
-  if (error) throw error
-  return data as any[]
-}
+export const getClients = async (): Promise<Client[]> => {
+  return mockClients;
+};
 
-export async function createClient(client: Omit<Client, "id" | "created_at">) {
-  const { data, error } = await supabase
-    .rpc("create_client", {
-      name: client.name,
-      email: client.email,
-      phone: client.phone,
-    }   
-    )
+export const createClient = async (client: Omit<Client, "id" | "created_at">): Promise<Client> => {
+  const newClient = {
+    ...client,
+    id: mockClients.length + 1,
+    created_at: new Date().toISOString()
+  };
+  mockClients.push(newClient);
+  return newClient;
+};
 
-  if (error) throw error
-  return data as Client
-}
+export const updateClient = async (id: number, client: Partial<Client>): Promise<Client> => {
+  const index = mockClients.findIndex(c => c.id === id);
+  if (index === -1) {
+    throw new Error("Cliente no encontrado");
+  }
+  
+  mockClients[index] = {
+    ...mockClients[index],
+    ...client
+  };
+  return mockClients[index];
+};
 
-export async function updateClient(id: string, client: Partial<Client>) {
-  const { data, error } = await supabase
-    .from("clients")
-    .update(client)
-    .eq("id", id)
-    .select()
-    .single()
-
-  if (error) throw error
-  return data as Client
-}
-
-export async function deleteClient(id: string) {
-  const { error } = await supabase
-    .from("clients")
-    .delete()
-    .eq("id", id)
-
-  if (error) throw error
-  return true
-}
+export const deleteClient = async (id: number): Promise<void> => {
+  const index = mockClients.findIndex(c => c.id === id);
+  if (index === -1) {
+    throw new Error("Cliente no encontrado");
+  }
+  mockClients.splice(index, 1);
+};
