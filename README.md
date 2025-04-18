@@ -9,6 +9,7 @@ Sharkmin es una aplicación web basada en React y construida con Vite, diseñada
 - **Diseño Responsivo**: Optimizado para dispositivos de escritorio y móviles.
 - **Temas**: Soporte para modo claro y oscuro con un interruptor de tema.
 - **Componentes Reutilizables**: Componentes de interfaz modular y reutilizables construidos con Tailwind CSS.
+- **Tablas Redimensionables**: Interfaz de tabla con columnas ajustables para mejor visualización de datos.
 
 ## Estructura del Proyecto
 
@@ -16,17 +17,29 @@ El proyecto está organizado de la siguiente manera:
 
 ```
 src/
-  App.jsx          # Punto de entrada principal de la aplicación
-  components/      # Componentes reutilizables de React
-    Auth/          # Componentes relacionados con la autenticación (Login, Register, etc.)
-    clients/       # Componentes para la gestión de clientes (Tabla, Formulario, Diálogos, etc.)
-    layouts/       # Componentes de diseño (por ejemplo, DashboardLayout)
-    Pages/         # Páginas de la aplicación (Dashboard, Calendar, etc.)
-    ui/            # Componentes de interfaz de usuario (Botón, Tarjeta, Tooltip, etc.)
-  hooks/           # Hooks personalizados de React
-  lib/             # Funciones utilitarias e integraciones con APIs
-  styles/          # Estilos globales (por ejemplo, Tailwind CSS)
-  Supabase/        # Configuración del cliente de Supabase
+  App.jsx                # Punto de entrada principal de la aplicación
+  main.jsx              # Configuración inicial de React
+  config/               # Configuraciones globales
+    constants.ts        # Constantes de la aplicación
+    routes.ts          # Configuración de rutas
+    supabase.ts        # Configuración de Supabase
+  features/            # Características principales organizadas por dominio
+    auth/              # Funcionalidad de autenticación
+    calendar/          # Módulo de calendario
+    clients/           # Gestión de clientes
+    dashboard/         # Dashboard principal
+  lib/                 # Utilidades y servicios compartidos
+    utils.ts          # Funciones utilitarias
+    api/              # Servicios de API
+  shared/             # Componentes y utilidades compartidas
+    components/       # Componentes reutilizables
+      ui/            # Componentes base de UI
+      layouts/       # Layouts de la aplicación
+      dialogs/       # Componentes de diálogo
+      theme/         # Gestión de temas
+    utils/           # Utilidades compartidas
+  styles/             # Estilos globales y assets
+  types/              # Definiciones de tipos TypeScript
 ```
 
 ## Comenzando
