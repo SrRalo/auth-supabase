@@ -1,24 +1,23 @@
-import { Card, CardHeader, Button, SidebarTrigger } from '@/shared/components/ui'
+import { Card, CardHeader } from '@/shared/components/ui'
 
 export default function Calendar() {
   return (
     <div className="flex-1 p-4 md:p-8 w-full max-w-full overflow-x-auto">
-      <SidebarTrigger />
       <div className="flex flex-col sm:flex-row items-center justify-between space-y-2 sm:space-y-0 mb-6">
         <h2 className="text-3xl font-bold tracking-tight">Calendar</h2>
         <div className="flex flex-wrap items-center gap-2">
-          <Button variant="outline" size="sm">
+          <button className="px-3 py-1 text-sm border rounded-md hover:bg-gray-100 dark:hover:bg-gray-800">
             Hoy
-          </Button>
-          <Button variant="outline" size="sm">
+          </button>
+          <button className="px-3 py-1 text-sm border rounded-md hover:bg-gray-100 dark:hover:bg-gray-800">
             Mes
-          </Button>
-          <Button variant="outline" size="sm">
+          </button>
+          <button className="px-3 py-1 text-sm border rounded-md hover:bg-gray-100 dark:hover:bg-gray-800">
             Semana
-          </Button>
-          <Button variant="outline" size="sm">
+          </button>
+          <button className="px-3 py-1 text-sm border rounded-md hover:bg-gray-100 dark:hover:bg-gray-800">
             Día
-          </Button>
+          </button>
         </div>
       </div>
       

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { Button, TableHead, ResizablePanelGroup, ResizablePanel, ResizableHandle, Tooltip, TooltipContent, TooltipProvider, TooltipTrigger, SidebarTrigger } from "@/shared/components/ui"
+import { Button, TableHead, ResizablePanelGroup, ResizablePanel, ResizableHandle, Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/shared/components/ui"
 import { Pencil, Trash2 } from "lucide-react"
 import { ClientDialog } from "./ClientDialog"
 import { DeleteConfirmationDialog } from "@/shared/components/dialogs/DeleteConfirmationDialog"
@@ -78,7 +78,6 @@ export default function ClientTable() {
   return (
     <div className="flex-1 space-y-8">
       <div className="p-4 md:p-8">
-        <SidebarTrigger />
         <div className="flex items-center justify-between">
           <h2 className="text-3xl font-bold tracking-tight">Clientes</h2>
           <Button onClick={() => setIsAddDialogOpen(true)}>Agregar Cliente</Button>

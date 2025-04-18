@@ -11,7 +11,7 @@ import { Label } from './label'
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from './resizable'
 import { Separator } from './separator'
 import { Sheet, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from './sheet'
-import { Sidebar, SidebarContent, SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarProvider, SidebarTrigger } from './sidebar'
+import { Sidebar, SidebarContent, SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarProvider } from './sidebar'
 import { Skeleton } from './skeleton'
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from './table'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './tooltip'
@@ -72,7 +72,6 @@ export {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarProvider,
-  SidebarTrigger,
   Skeleton,
   Table,
   TableBody,
